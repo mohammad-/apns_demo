@@ -39,7 +39,7 @@ class APNsHTTP2Session(object):
         self.pem = pem
         self.password = password
 
-    def notify(self, messages):
+    def notify(self, messages, apns_topic=None):
         """
         Sends push notification to one device
         message is a dictionary with device token as key
@@ -56,6 +56,10 @@ class APNsHTTP2Session(object):
                     "apns-id": str(uuid.uuid4()),
                     "apns-expiration": str(long(time.time()) + 24 * 60 * 60)
                 }
+
+                if apns_topic is not None:
+                    headers["apns-topic"] = apns_topic
+
                 conn.request(method, path, body=body, headers=headers)
                 resp = conn.get_response()
                 if resp.status != 200:
