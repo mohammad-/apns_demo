@@ -65,15 +65,10 @@ class APNsHTTP2Session(object):
 
 
 if __name__ == "__main__":
-    # with open("./key.pem") as f :
-    with open("./biz_mdm.pem") as f:
+    with open("./key.pem") as f:
         key = f.read()
         apns_messages = {
-            u'8d88c27f680b56144ccd644eb761f863e43015bcf63758cb61fd02e9589eacb0': {'mdm': u'694EDF90-12CA-464A-B477-D12DF943236C'},
+            u'8e88cf7f680c561d4ccd644eb761f863e43015bcf63758cb61fd02e9589eacb0': {'mdm': u'694EDF90-12CA-464A-B477-D12DF943236C'},
                         }
-
         sender1 = APNsHTTP2Session(key, password=None)
         print sender1.notify(apns_messages)
-
-        # sender2 = APNsSession(key)
-        # print sender2.notify(apns_messages)
